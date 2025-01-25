@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBSITW</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover; /* Ensures the image covers the full page */
+            color: #fff; /* White text color to contrast with the background */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #000000; /* Black text for better visibility */
+            margin-bottom: 25px;
+        }
+
+        /* Menu Styling */
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: #0088cc;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .menu a:hover {
+            background-color: #005f8e;
+        }
+
+        /* Voting Page and Results Page Styling */
+        .voting-page, .results-page, .home-page {
+            display: none; /* Hide pages initially */
+        }
+
+        .show {
+            display: block;
+        }
+
+        /* Form styling */
+        form {
+            background: rgba(255, 255, 255, 0.8); /* Light transparent background for the form */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            color: #333; /* Dark text for form elements */
+        }
+
+        /* Voting sections */
+        .voting-section {
+            background: rgba(255, 255, 255, 0.8); /* Light background for voting sections */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+        }
+        .voting-page {
+            display: none; /* Hide the page initially */
+            background-color: #f0f8ff; /* Light blue color */
+            color: #000000; /* Set the text color to black */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .image-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
+            gap: 20px; /* Add space between items */
+            justify-items: center; /* Center the items horizontally */
+            align-items: center; /* Center the items vertically */
+            grid-template-rows: repeat(2, auto);
+        }
+
+        .images-container img {
+            width: 100%; /* Ensure the images fill their container */
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px; /* Optional: Add rounded corners */
+        }
+
+        .image-container p {
+            font-size: 1rem;
+            color: #000000;
+            margin-top: 10px;
+        }
+
+        .voting-page h1, .voting-page h2, .voting-page p, .voting-page label {
+            color: #000000; /* Set text color of headings, paragraphs, and labels to black */
+        }
+
+        .candidates {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .candidates li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .candidates input {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: #0088cc; /* Button color */
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #005f8e; /* Darker shade for hover effect */
+        }
+
+        /* Results Page Styling */
+        .results-page {
+            display: none; /* Hide the page initially */
+            background-color: #fffacd; /* Light yellow background */
+            color: #000000; /* Black text color */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .results-page h1, .results-page h2, .results-page p, .results-page span {
+            color: #000000; /* Set text color to black */
+        }
+
+        .results-page .menu a {
+            color: #000000; /* Set link color to black */
+        }
+
+        /* Home Page Styling with Image */
+        .home-page {
+            display: none; /* Hide the page initially */
+            background: url('union.jpg') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Ensures the image covers the whole page */
+            color: #000000; /* Black text color */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn {
+            background: #0088cc; /* Button color */
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #005f8e; /* Darker shade for hover effect */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+
+<!-- Login Page -->
+<div class="container" id="login-page">
+    <h1>LBSITW</h1>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="student-id">Student ID</label>
+            <input type="text" id="student-id" placeholder="Enter your Student ID" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your Password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<!-- Home Page -->
+<div class="container home-page" id="home-page">
+    <div class="menu">
+        <a href="#" id="home-link">Home</a>
+        <a href="#" id="voting-link">Voting</a>
+        <a href="#" id="results-link">Results</a>
+    </div>
+    <h1>Welcome to the College E-Voting System</h1>
+    <p>Respected Teachers,staffs and my dear friends, be proud to be part of our campus election. 
+        where we will be selecting our leaders in different areas.Who will make sure to bring
+        out both our academic and extracuricular activities.Don't we want our fests YD ,Prayag,Yavanika.
+        Be seated carefully guys cause our new union is about to begin their adventure which is going to make us enthralled!!!
+        
+       Take a minute to cast your vote ..!
+       Be part of the new begining... </p>
+</div>
+
+<!-- Voting Page -->
+<div class="container voting-page" id="voting-page">
+    <div class="menu">
+        <a href="#" id="home-link-voting">Home</a>
+        <a href="#" id="voting-link-voting">Voting</a>
+        <a href="#" id="results-link-voting">Results</a>
+    </div>
+    <h1>Our Candidates</h1>
+    <p>Make the Right Choice!</p>
+
+    <div class="image-section">
+        <div class="image-container">
+            <img src="image1.jpg" alt="Image 1">
+            <p>Eda Immanuel</p>
+        </div>
+        <div class="image-container">
+            <img src="image2.jpg" alt="Image 2">
+            <p>Pravda Siva</p>
+        </div>
+        <div class="image-container">
+            <img src="image3.jpg" alt="Image 3">
+            <p>Krish S</p>
+        </div>
+        <div class="image-container">
+            <img src="image4.jpg" alt="Image 4">
+            <p>Sona George</p>
+        </div>
+        <div class="image-container">
+            <img src="image5.jpg" alt="Image 5">
+            <p>Aniyan K Kuriakose</p>
+        </div>
+        <div class="image-container">
+            <img src="image6.jpg" alt="Image 6">
+            <p>Swas Lek</p>
+        </div>
+        <div class="image-container">
+            <img src="image7.jpg" alt="Image 7">
+            <p>Suh Sanj</p>
+        </div>
+        <div class="image-container">
+            <img src="image8.jpg" alt="Image 8">
+            <p>Srutheer K</p>
+        </div>
+    </div>
+
+    <div class="voting-section">
+        <h2>Chairperson</h2>
+        <ul class="candidates">
+            <li><input type="radio" name="chairperson" value="Eda Immanuel"> Eda Immanuel</li>
+            <li><input type="radio" name="chairperson" value="Pravda Siva"> Pravda Siva</li>
+        </ul>
+    </div>
+
+    <div class="voting-section">
+        <h2>Vice Chairperson</h2>
+        <ul class="candidates">
+            <li><input type="radio" name="vice-chairperson" value="Krish S"> Krish S</li>
+            <li><input type="radio" name="vice-chairperson" value="Sona George"> Sona George</li>
+        </ul>
+    </div>
+
+    <div class="voting-section">
+        <h2>Arts Representative</h2>
+        <ul class="candidates">
+            <li><input type="radio" name="arts-rep" value="Aniyan K Kuriakose"> Aniyan K Kuriakose</li>
+            <li><input type="radio" name="arts-rep" value="Swas Lek"> Swas Lek</li>
+        </ul>
+    </div>
+
+    <div class="voting-section">
+        <h2>Sports Representative</h2>
+        <ul class="candidates">
+            <li><input type="radio" name="sports-rep" value="Srutheer K"> Srutheer K</li>
+            <li><input type="radio" name="sports-rep" value="Suh Sanj"> Suh Sanj</li>
+        </ul>
+    </div>
+
+    <button class="submit-btn" id="submit-vote">Submit</button>
+</div>
+
+<!-- Results Page -->
+<div class="container results-page" id="results-page">
+    <div class="menu">
+        <a href="#" id="home-link-results">Home</a>
+        <a href="#" id="voting-link-results">Voting</a>
+        <a href="#" id="results-link-results">Results</a>
+    </div>
+    <h1>Election Results</h1>
+    <div id="results">
+        <h2>Chairperson</h2>
+        <p>Eda Immanuel: <span id="result-chairperson-eda">0</span> votes</p>
+        <p>Pravda Siva: <span id="result-chairperson-pravda">0</span> votes</p>
+
+        <h2>Vice Chairperson</h2>
+        <p>Krish S: <span id="result-vice-chairperson-krish">0</span> votes</p>
+        <p>Sona George: <span id="result-vice-chairperson-sona">0</span> votes</p>
+
+        <h2>Arts Representative</h2>
+        <p>Aniyan K Kuriakose: <span id="result-arts-rep-aniyan">0</span> votes</p>
+        <p>Swas Lek: <span id="result-arts-rep-swas">0</span> votes</p>
+
+        <h2>Sports Representative</h2>
+        <p>Srutheer K: <span id="result-sports-rep-srutheer">0</span> votes</p>
+        <p>Suh Sanj: <span id="result-sports-rep-suh">0</span> votes</p>
+    </div>
+</div>
+
+<script>
+    let votes = {
+        "chairperson": { "Eda Immanuel": 0, "Pravda Siva": 0 },
+        "vice-chairperson": { "Krish S": 0, "Sona George": 0 },
+        "arts-rep": { "Aniyan K Kuriakose": 0, "Swas Lek": 0 },
+        "sports-rep": { "Srutheer K": 0, "Suh Sanj": 0 }
+    };
+
+    // Handle Login
+    const loginForm = document.getElementById('login-form');
+    const loginPage = document.getElementById('login-page');
+    const homePage = document.getElementById('home-page');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        loginPage.style.display = 'none';
+        homePage.style.display = 'block';
+    });
+
+    // Handle Navigation
+    const homeLink = document.getElementById('home-link');
+    const votingLink = document.getElementById('voting-link');
+    const resultsLink = document.getElementById('results-link');
+
+    const homeLinkVoting = document.getElementById('home-link-voting');
+    const votingLinkVoting = document.getElementById('voting-link-voting');
+    const resultsLinkVoting = document.getElementById('results-link-voting');
+
+    const homeLinkResults = document.getElementById('home-link-results');
+    const votingLinkResults = document.getElementById('voting-link-results');
+    const resultsLinkResults = document.getElementById('results-link-results');
+
+    // Show Home Page
+    homeLink.addEventListener('click', () => {
+        homePage.style.display = 'block';
+        document.getElementById('voting-page').style.display = 'none';
+        document.getElementById('results-page').style.display = 'none';
+    });
+
+    // Show Voting Page
+    votingLink.addEventListener('click', () => {
+        homePage.style.display = 'none';
+        document.getElementById('voting-page').style.display = 'block';
+        document.getElementById('results-page').style.display = 'none';
+    });
+
+    // Show Results Page
+    resultsLink.addEventListener('click', () => {
+        homePage.style.display = 'none';
+        document.getElementById('voting-page').style.display = 'none';
+        document.getElementById('results-page').style.display = 'block';
+    });
+
+    // Show Home Page (from Voting Page)
+    homeLinkVoting.addEventListener('click', () => {
+        homePage.style.display = 'block';
+        document.getElementById('voting-page').style.display = 'none';
+        document.getElementById('results-page').style.display = 'none';
+    });
+
+    // Show Voting Page (from Results Page)
+    votingLinkResults.addEventListener('click', () => {
+        homePage.style.display = 'none';
+        document.getElementById('voting-page').style.display = 'block';
+        document.getElementById('results-page').style.display = 'none';
+    });
+
+    // Show Results Page (from Voting Page)
+    resultsLinkVoting.addEventListener('click', () => {
+        homePage.style.display = 'none';
+        document.getElementById('voting-page').style.display = 'none';
+        document.getElementById('results-page').style.display = 'block';
+    });
+
+    // Handle Voting Submission
+    document.getElementById('submit-vote').addEventListener('click', () => {
+        // Update votes based on the selected candidates
+        const chairpersonVote = document.querySelector('input[name="chairperson"]:checked');
+        if (chairpersonVote) {
+            votes.chairperson[chairpersonVote.value]++;
+            document.getElementById('result-chairperson-eda').textContent = votes.chairperson['Eda Immanuel'];
+            document.getElementById('result-chairperson-pravda').textContent = votes.chairperson['Pravda Siva'];
+        }
+
+        const viceChairpersonVote = document.querySelector('input[name="vice-chairperson"]:checked');
+        if (viceChairpersonVote) {
+            votes['vice-chairperson'][viceChairpersonVote.value]++;
+            document.getElementById('result-vice-chairperson-krish').textContent = votes['vice-chairperson']['Krish S'];
+            document.getElementById('result-vice-chairperson-sona').textContent = votes['vice-chairperson']['Sona George'];
+        }
+
+        const artsRepVote = document.querySelector('input[name="arts-rep"]:checked');
+        if (artsRepVote) {
+            votes['arts-rep'][artsRepVote.value]++;
+            document.getElementById('result-arts-rep-aniyan').textContent = votes['arts-rep']['Aniyan K Kuriakose'];
+            document.getElementById('result-arts-rep-swas').textContent = votes['arts-rep']['Swas Lek'];
+        }
+
+        const sportsRepVote = document.querySelector('input[name="sports-rep"]:checked');
+        if (sportsRepVote) {
+            votes['sports-rep'][sportsRepVote.value]++;
+            document.getElementById('result-sports-rep-srutheer').textContent = votes['sports-rep']['Srutheer K'];
+            document.getElementById('result-sports-rep-suh').textContent = votes['sports-rep']['Suh Sanj'];
+        }
+
+        // Show the success message and redirect to results page
+        alert('Voted successfully!');
+        homePage.style.display = 'none';
+        document.getElementById('voting-page').style.display = 'none';
+        document.getElementById('results-page').style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
