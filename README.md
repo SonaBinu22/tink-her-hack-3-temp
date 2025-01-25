@@ -1,14 +1,14 @@
-# [Project Name] 🎯
+# Block Chain Voting system 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: BiT-by-BiT
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Vandana Gopan - LBSITW
+- Member 2: Pravda Premji - LBSITW
+- Member 3: Sona Binu - LBSITW
 
 ### Hosted Project Link
 [mention your project hosted project link here]
