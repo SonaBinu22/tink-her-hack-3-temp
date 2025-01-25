@@ -1,14 +1,14 @@
-# [Project Name] 🎯
+# E-VOTING WEBSITE 
 
 
-## Basic Details
-### Team Name: [Name]
+## This project is a blockchain-powered voting system designed for secure,transparent and tamperproof elections.
+### Team Name: BIT-BY-BIT
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Pravda Premji - LBSITW
+- Member 2: Sona M Binu   - LBSITW
+- Member 3: Vandana Gopan - LBSITW
 
 ### Hosted Project Link
 [mention your project hosted project link here]
@@ -24,13 +24,12 @@
 
 ## Technical Details
 ### Technologies/Components Used
-For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+Frontend:
+-HTML
+-CSS
+-JAVASCRIPT
 
-For Hardware:
+Backend:
 - [List main components]
 - [List specifications]
 - [List tools required]
