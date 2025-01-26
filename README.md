@@ -29,15 +29,6 @@ Frontend - html,css,javascript
 
 
 
-
-
-### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-
-
 ## Team Contributions
 - Sona M Binu: Backend
 - Vandana Gopan: Frontend
