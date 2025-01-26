@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBSITW E-Voting</title>
+    <style>
+        /* Your existing CSS styles */
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="container login-page show" id="login-page">
+        <h1>LBSITW E-Voting</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="student-id">Student ID</label>
+                <input type="text" id="student-id" placeholder="Enter your Student ID" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your Password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+
+    <!-- Home Page -->
+    <div class="container home-page" id="home-page">
+        <div class="menu">
+            <a href="#" id="home-link">Home</a>
+            <a href="#" id="voting-link">Voting</a>
+            <a href="#" id="results-link">Results</a>
+        </div>
+        <h1>Welcome to the College E-Voting System</h1>
+        <p>Be proud to participate in our campus election.</p>
+    </div>
+
+    <!-- Voting Page -->
+    <div class="container voting-page" id="voting-page">
+        <div class="menu">
+            <a href="#" id="home-link-voting">Home</a>
+            <a href="#" id="voting-link-voting">Voting</a>
+            <a href="#" id="results-link-voting">Results</a>
+        </div>
+       
+        <h1 style="color: #013535;">Vote for Your Candidates</h1>
+
+        <form id="voting-form">
+            <div class="form-group">
+                <h3>Chairperson</h3>
+                <label><input type="radio" name="chairperson" value="Eda Immanuel"> Eda Immanuel</label><br>
+                <label><input type="radio" name="chairperson" value="Pravda Siva"> Pravda Siva</label>
+            </div>
+            <div class="form-group">
+                <h3>Vice Chairperson</h3>
+                <label><input type="radio" name="vice-chairperson" value="Krish S"> Krish S</label><br>
+                <label><input type="radio" name="vice-chairperson" value="Sona George"> Sona George</label>
+            </div>
+            <div class="form-group">
+                <h3>UUC</h3>
+                <label><input type="radio" name="uuc" value="Anjali P"> Anjali P</label><br>
+                <label><input type="radio" name="uuc" value="Ravi S"> Ravi S</label>
+            </div>
+            <div class="form-group">
+                <h3>Sports Representative</h3>
+                <label><input type="radio" name="sports-rep" value="Rohit K"> Rohit K</label><br>
+                <label><input type="radio" name="sports-rep" value="Nisha R"> Nisha R</label>
+            </div>
+            <div class="form-group">
+                <h3>Arts Representative</h3>
+                <label><input type="radio" name="arts-rep" value="Meera G"> Meera G</label><br>
+                <label><input type="radio" name="arts-rep" value="Aaryan P"> Aaryan P</label>
+            </div>
+            <button type="submit" class="btn" id="vote-btn">Submit Vote</button>
+            <p id="voted-message" class="voted-message" style="display: none;">You have already voted!</p>
+        </form>
+    </div>
+
+    <!-- Results Page -->
+    <div class="container results-page" id="results-page">
+        <div class="menu">
+            <a href="#" id="home-link-results">Home</a>
+            <a href="#" id="voting-link-results">Voting</a>
+            <a href="#" id="results-link-results">Results</a>
+        </div>
+        <div class="results-section" id="result-display">
+            <h2>Election Results</h2>
+            <!-- Results will appear here -->
+        </div>
+    </div>
+
+    <script>
+        // Initialize or retrieve stored vote counts
+        const initializeVotes = () => {
+            const savedVotes = JSON.parse(localStorage.getItem('votes'));
+            if (!savedVotes) {
+                return {
+                    chairperson: { 'Eda Immanuel': 0, 'Pravda Siva': 0 },
+                    viceChairperson: { 'Krish S': 0, 'Sona George': 0 },
+                    uuc: { 'Anjali P': 0, 'Ravi S': 0 },
+                    sportsRep: { 'Rohit K': 0, 'Nisha R': 0 },
+                    artsRep: { 'Meera G': 0, 'Aaryan P': 0 },
+                };
+            }
+            return savedVotes;
+        };
+
+        let votes = initializeVotes();
+        let hasVoted = false;
+
+        // Handle login
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const studentId = document.getElementById('student-id').value;
+            const password = document.getElementById('password').value;
+
+            if (studentId === '12345' && password === 'password'||studentId === '12346' && password === 'pass') {
+                alert('Login successful!');
+                showPage('home-page');
+            } else {
+                alert('Invalid Student ID or Password!');
+            }
+        });
+
+        // Handle navigation
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetPage = this.id.split('-')[0] + '-page';
+                showPage(targetPage);
+
+                if (targetPage === 'results-page') {
+                    displayResults();
+                }
+            });
+        });
+
+        // Handle vote submission
+        document.getElementById('voting-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            if (hasVoted) {
+                return; // Prevent voting if already voted
+            }
+
+            const chairpersonVote = document.querySelector('input[name="chairperson"]:checked');
+            const viceChairpersonVote = document.querySelector('input[name="vice-chairperson"]:checked');
+            const uucVote = document.querySelector('input[name="uuc"]:checked');
+            const sportsRepVote = document.querySelector('input[name="sports-rep"]:checked');
+            const artsRepVote = document.querySelector('input[name="arts-rep"]:checked');
+
+            if (chairpersonVote && viceChairpersonVote && uucVote && sportsRepVote && artsRepVote) {
+                votes.chairperson[chairpersonVote.value]++;
+                votes.viceChairperson[viceChairpersonVote.value]++;
+                votes.uuc[uucVote.value]++;
+                votes.sportsRep[sportsRepVote.value]++;
+                votes.artsRep[artsRepVote.value]++;
+
+                // Save the updated votes to localStorage
+                localStorage.setItem('votes', JSON.stringify(votes));
+
+                alert('Vote submitted successfully!');
+                hasVoted = true; // Set the flag to true once the user votes
+                document.getElementById('vote-btn').disabled = true; // Disable voting button
+                document.getElementById('voted-message').style.display = 'block'; // Show already voted message
+                showPage('results-page');
+                displayResults();
+            } else {
+                alert('Please select a candidate for each position!');
+            }
+        });
+
+        // Display results
+        function displayResults() {
+            const resultDisplay = document.getElementById('result-display');
+            resultDisplay.innerHTML = `
+                <h2>Election Results</h2>
+                <p><strong>Chairperson:</strong></p>
+                <p>Eda Immanuel: ${votes.chairperson['Eda Immanuel']} votes</p>
+                <p>Pravda Siva: ${votes.chairperson['Pravda Siva']} votes</p>
+                <p><strong>Vice Chairperson:</strong></p>
+                <p>Krish S: ${votes.viceChairperson['Krish S']} votes</p>
+                <p>Sona George: ${votes.viceChairperson['Sona George']} votes</p>
+                <p><strong>UUC:</strong></p>
+                <p>Anjali P: ${votes.uuc['Anjali P']} votes</p>
+                <p>Ravi S: ${votes.uuc['Ravi S']} votes</p>
+                <p><strong>Sports Representative:</strong></p>
+                <p>Rohit K: ${votes.sportsRep['Rohit K']} votes</p>
+                <p>Nisha R: ${votes.sportsRep['Nisha R']} votes</p>
+                <p><strong>Arts Representative:</strong></p>
+                <p>Meera G: ${votes.artsRep['Meera G']} votes</p>
+                <p>Aaryan P: ${votes.artsRep['Aaryan P']} votes</p>
+            `;
+        }
+
+        // Show the selected page
+        function showPage(pageId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.classList.remove('show');
+            });
+            document.getElementById(pageId).classList.add('show');
+        }
+    </script>
+</body>
+</html>
