@@ -26,6 +26,9 @@ Website which ensures secure voting strategies
 ### Technologies/Components Used
 Frontend - html,css,javascript
 
+![img](https://github.com/user-attachments/assets/f6fb086a-be11-4376-94ce-9c18ce0e635e)
+![img2](https://github.com/user-attachments/assets/561aa11f-7d38-4205-870c-3bc9cae699e2)
+![img3](https://github.com/user-attachments/assets/fc28b1cd-7621-4b1c-ac58-87b7373af377)
 
 
 
