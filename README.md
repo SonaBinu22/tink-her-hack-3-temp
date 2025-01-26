@@ -1,4 +1,4 @@
-# Block Chain Voting system 🎯
+# e-Voting system 🎯
 
 
 ## Basic Details
@@ -11,89 +11,37 @@
 - Member 3: Sona Binu - LBSITW
 
 ### Hosted Project Link
-[mention your project hosted project link here]
+https://tink-her-hack-3-temp-one.vercel.app/
 
 ### Project Description
-[2-3 lines about what your project does]
+Secure and immutable way to register votes
 
 ### The Problem statement
-[What ridiculous problem are you solving?]
+Issues related to transparency and fairness in election
 
 ### The Solution
-[How are you solving it? Keep it fun!]
+Website which ensures secure voting strategies
 
 ## Technical Details
 ### Technologies/Components Used
-For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
-
-### Implementation
-For Software:
-# Installation
-[commands]
-
-# Run
-[commands]
-
-### Project Documentation
-For Software:
-
-# Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Team](Add photo of your team here)
+Frontend - html,css,javascript
 
 
-![Components](Add photo of your components here)
-*List out all components shown*
 
-![Build](Add photos of build process here)
-*Explain the build steps*
 
-![Final](Add photo of final product here)
-*Explain the final build*
+
 
 ### Project Demo
 # Video
 [Add your demo video link here]
 *Explain what the video demonstrates*
 
-# Additional Demos
-[Add any extra demo materials/links]
+
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Sona M Binu: Backend
+- Vandana Gopan: Frontend
+- Pravda Premji: Frontend
 
 ---
 Made with ❤️ at TinkerHub
