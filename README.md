@@ -8,7 +8,7 @@
 ### Team Members
 - Member 1: Vandana Gopan - LBSITW
 - Member 2: Pravda Premji - LBSITW
-- Member 3: Sona Binu - LBSITW
+- Member 3: Sona M Binu - LBSITW
 
 ### Hosted Project Link
 https://tink-her-hack-3-temp-one.vercel.app/
